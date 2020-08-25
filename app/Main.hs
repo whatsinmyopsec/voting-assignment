@@ -1,6 +1,14 @@
 module Main where
 
-import Lib
+import Cleaner.CleaningVotes
 
 main :: IO ()
-main = someFunc
+main = do
+  let file = "Please enter the file you would like to query for results:"
+  print file
+
+  csvData <- readFile file
+
+  -- cleaning section --
+  let firstPass = cleanRoundOne csvData
+  print firstPass

@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: ef346f2d1a1f0798e0ad904d77ca0439ffb8c5e51a2f9c96a9dd0fb508700fb0
+-- hash: e73784cf439dfe239243343b17306b1a88e65034c81129af693ae0a260653c4b
 
 name:           voting-assignment
 version:        0.1.0.0
@@ -27,19 +27,23 @@ source-repository head
 
 library
   exposed-modules:
-      Lib
+      Cleaner.CleaningVotes
   other-modules:
-      Paths_voting_assignment
+      Lib
+      
   hs-source-dirs:
       src
   build-depends:
       base >=4.7 && <5
+    , csv
+    , split
+    , text
   default-language: Haskell2010
 
 executable voting-assignment-exe
   main-is: Main.hs
   other-modules:
-      Paths_voting_assignment
+      
   hs-source-dirs:
       app
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
@@ -52,7 +56,7 @@ test-suite voting-assignment-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
-      Paths_voting_assignment
+      
   hs-source-dirs:
       test
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
