@@ -24,7 +24,7 @@ countVotes xs = length xs
 -- ["4","3","5","1","2"]
 
 -- -- get names on numbers in votes
--- [("4", "D. Milliband"), ("3", "A. Burbhm"), ("5", "E. Milliband"), ("1", "D. Abbott"), ("2", "E. Balls")]
+-- [(4, "D. Milliband"), (3, "A. Burbhm"), (5, "E. Milliband"), (1, "D. Abbott"), (2, "E. Balls")]
 tupleCandidates :: [String] -> [(Integer, String)]
 tupleCandidates xs = zip [1 ..] xs
 
