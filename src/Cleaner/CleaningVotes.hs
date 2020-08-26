@@ -10,7 +10,7 @@ removeVoteNumberAndName :: [[String]] -> [[String]]
 removeVoteNumberAndName xs = [drop 2 x | x <- xs]
 
 discardFromListOfLists :: (a -> Bool) -> [[a]] -> [[a]]
-discardFromListOfLists p xs = map (\list -> discardFromList p list) xs
+discardFromListOfLists p xs = map (discardFromList p) xs
 
 discardFromList :: (a -> Bool) -> [a] -> [a]
 discardFromList p xs = [x | x <- xs, not $ p x]

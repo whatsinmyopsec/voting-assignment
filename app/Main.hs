@@ -1,7 +1,7 @@
 module Main where
 
 import Cleaner.CleaningVotes
-import Count.ATV
+import Count.AV
 
 main :: IO ()
 main = do
@@ -27,10 +27,10 @@ main = do
   let endCleaningCandidates = mapVotesAndCandidates tuples intList
   print $ endCleaningCandidates
 
-  -- ATV winner --
+  -- AV winner --
   putStr "ATV winner: "
   let atvWinner = winner' endCleaningCandidates
-  -- ATV not correct yet
+  -- AV not correct yet
   print $ atvWinner
   let totalVotes = countVotes votes
   putStr "Total votes after cleaning: "

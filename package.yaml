@@ -26,7 +26,7 @@ library:
   source-dirs: src
   exposed-modules:
     - Cleaner.CleaningVotes
-    - Count.ATV
+    - Count.AV
   dependencies:
     - split
     - text
