@@ -1,6 +1,7 @@
 module Main where
 
 import Cleaner.CleaningVotes
+import Count.ATV
 
 main :: IO ()
 main = do
@@ -10,9 +11,10 @@ main = do
   csvData <- readFile file
 
   let candidates = getCandidates csvData
-  putStrLn "The candidates are:\n"
+  putStrLn "The candidates are: "
   print $ candidates
   putStrLn "\n"
+
   -- cleaning section --
   let firstPass = cleanRoundOne csvData
   let rmStars = discardFromListOfLists (== "*") firstPass
@@ -20,9 +22,18 @@ main = do
   let rmNullLists = discardFromList (== []) rmBlanks
   let numbers = discardFromList (== candidates) rmNullLists
   let votes = removeVoteNumberAndName numbers
-  print $ votes
+  let intList = stringListToInt votes
+  let tuples = tupleCandidates candidates
+  let endCleaningCandidates = mapVotesAndCandidates tuples intList
+  print $ endCleaningCandidates
+
+  -- ATV winner --
+  putStr "ATV winner: "
+  let atvWinner = winner' endCleaningCandidates
+  -- ATV not correct yet
+  print $ atvWinner
   let totalVotes = countVotes votes
-  putStrLn "Total votes after cleaning:\n"
+  putStr "Total votes after cleaning: "
   print $ totalVotes
 
 -- stack ghci to test

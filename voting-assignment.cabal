@@ -28,6 +28,7 @@ source-repository head
 library
   exposed-modules:
       Cleaner.CleaningVotes
+      Count.ATV
   other-modules:
       Lib
       
