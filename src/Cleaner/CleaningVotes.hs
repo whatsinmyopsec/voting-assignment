@@ -16,3 +16,6 @@ discardFromList p xs = [x | x <- xs, not $ p x]
 
 getCandidates :: String -> [String]
 getCandidates firstpass = drop 2 $ head (cleanRoundOne firstpass)
+
+countVotes :: [[String]] -> Int
+countVotes xs = length xs
