@@ -23,6 +23,7 @@ main = do
   let numbers = discardFromList (== candidates) rmNullLists
   let votes = removeVoteNumberAndName numbers
   let intList = stringListToInt votes
+  print $ intList
   let tuples = tupleCandidates candidates
   let endCleaningCandidates = mapVotesAndCandidates tuples intList
   print $ endCleaningCandidates
@@ -31,6 +32,7 @@ main = do
   putStr "ATV winner: "
   let atvWinner = winner' endCleaningCandidates
   -- AV not correct yet
+  -- reverse the list
   print $ atvWinner
   let totalVotes = countVotes votes
   putStr "Total votes after cleaning: "

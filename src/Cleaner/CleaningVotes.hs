@@ -31,9 +31,22 @@ tupleCandidates xs = zip [1 ..] xs
 stringListToInt :: [[String]] -> [[Integer]]
 stringListToInt = map (map read)
 
+-- if it was 1 ..5
+-- [1,2,3,4,5]
+-- ["D. Abbott","E. Balls","A. Burbhm","D. Milliband","E. Milliband"]
+
+-- How it is supposed to be
+-- [5,4,3,1,2]
+-- ["D. Milliband","E. Milliband","A. Burbhm","E. Balls","D. Abbott"]
+-- How I got it
+-- ["E. Milliband","D. Milliband","A. Burbhm","D. Abbott","E. Balls"]
+
+-- I thought I was close to being finished :(
+
 goMatch :: Integer -> [(Integer, String)] -> String
 goMatch i [] = undefined
-goMatch i ((i', n) : xs) = if i == i' then n else goMatch i xs
+goMatch i ((i', n) : xs) | i == i' = n
+goMatch i (_ : xs) = goMatch i xs
 
 mapVotesAndCandidates :: [(Integer, String)] -> [[Integer]] -> [[String]]
 mapVotesAndCandidates _ [] = []
