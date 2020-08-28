@@ -12,10 +12,11 @@ main = do
 
   let candidates = getCandidates csvData
   putStrLn "The candidates are: "
-  print $ candidates
-  putStrLn "\n"
+  mapM_ print $ candidates
 
-  -- cleaning section --
+  putStrLn "Cleaning in process\n"
+
+  -- Cleaning section --
   let firstPass = cleanRoundOne csvData
   let rmBlanks = discardFromListOfLists (== "") firstPass
   let rmNullLists = discardFromList (== []) rmBlanks
@@ -28,6 +29,7 @@ main = do
   let lists = map (map fst) rmStars
   let endCleaningCandidates = mapVotesAndCandidates tuples lists
 
+  -- After cleaning total votes amount --
   let totalVotes = countVotes votes
   putStr "Total votes after cleaning: "
   print $ totalVotes
@@ -35,7 +37,4 @@ main = do
   -- AV winner --
   putStr "Alternative Vote winner: "
   let avWinner = winner' endCleaningCandidates
-  -- Woo Hoo it's correct
   print $ avWinner
-
--- stack ghci to test

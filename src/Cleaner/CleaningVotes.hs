@@ -5,7 +5,7 @@ import Data.List (sortOn)
 import Data.List.Split (splitOn)
 
 cleanRoundOne :: String -> [[String]]
-cleanRoundOne dirtyVotes = map (splitOn ",") $ splitOn "\n" dirtyVotes
+cleanRoundOne csvFile = map (splitOn ",") $ splitOn "\n" csvFile
 
 removeVoteNumberAndName :: [[String]] -> [[String]]
 removeVoteNumberAndName xs = [drop 2 x | x <- xs]
