@@ -23,25 +23,19 @@ main = do
   let votes = removeVoteNumberAndName numbers
   let zipper = zipVotes votes
   let prefMan = sortVotes zipper
-  -- This needs to be here to keep the preferece of the votes
-  -- else its all messed up
   let rmStars = (map $ discardFromList ((== "*") . snd)) prefMan
-  print $ rmStars
-  let fixVotes = discardFromListOfLists (== "*") votes
-  let intList = stringListToInt fixVotes
+  let tuples = zipCandidates candidates
+  let lists = map (map fst) rmStars
+  let endCleaningCandidates = mapVotesAndCandidates tuples lists
 
-  let tuples = tupleCandidates candidates
-
-  let endCleaningCandidates = mapVotesAndCandidates tuples intList
-  print $ endCleaningCandidates
+  let totalVotes = countVotes votes
+  putStr "Total votes after cleaning: "
+  print $ totalVotes
 
   -- AV winner --
   putStr "Alternative Vote winner: "
   let avWinner = winner' endCleaningCandidates
-  -- AV not correct yet
+  -- Woo Hoo it's correct
   print $ avWinner
-  let totalVotes = countVotes votes
-  putStr "Total votes after cleaning: "
-  print $ totalVotes
 
 -- stack ghci to test
