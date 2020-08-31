@@ -27,6 +27,7 @@ main = do
   let rmStars = (map $ discardFromList ((== "*") . snd)) prefMan
   let tuples = zipCandidates candidates
   let lists = map (map fst) rmStars
+  -- print $ lists
   let endCleaningCandidates = mapVotesAndCandidates tuples lists
 
   -- After cleaning total votes amount --

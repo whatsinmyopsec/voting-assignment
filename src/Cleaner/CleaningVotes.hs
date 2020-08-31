@@ -36,8 +36,7 @@ zipCandidates xs = zip [1 ..] xs
 
 goMatch :: Integer -> [(Integer, String)] -> String
 goMatch i [] = undefined
-goMatch i ((i', n) : xs) | i == i' = n
-goMatch i (_ : xs) = goMatch i xs
+goMatch i ((i', n) : xs) = if i == i' then n else goMatch i xs
 
 mapVotesAndCandidates :: [(Integer, String)] -> [[Integer]] -> [[String]]
 mapVotesAndCandidates _ [] = []
@@ -45,6 +44,13 @@ mapVotesAndCandidates ns (is : iss) =
   map locate is : mapVotesAndCandidates ns iss
   where
     locate i = goMatch i ns
+
+-- mapVotesAndCandidates [(1, "D. Abbott"), (2, "E. Balls")] [[1,2], [2]]
+-- -> [["D. Abbott", "E. Balls"], ["E. Balls"]]
+
+-- `ns` names it's the list of candidates, paired with numbers [(Integer, String)]
+-- `ns` is the association list used by goMatch
+-- something like this [(4, "D. Milliband"), (3, "A. Burbhm"), (5, "E. Milliband"), (1, "D. Abbott"), (2, "E. Balls")]
 
 discardFromListOfLists :: (a -> Bool) -> [[a]] -> [[a]]
 discardFromListOfLists p xs = map (discardFromList p) xs
